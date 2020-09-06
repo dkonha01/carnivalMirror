@@ -37,8 +37,8 @@ const s = (p) => {
   p.draw = () => {
     fft.analyze()
 
-    const bass = fft.getEnergy("bass") / 2
-    const treble = fft.getEnergy("treble") * 3
+    const bass = fft.getEnergy("bass") 
+    const treble = fft.getEnergy("treble") 
   
     const mid = fft.getEnergy("mid") 
 
@@ -48,9 +48,9 @@ const s = (p) => {
     const mapMid = p.map(mid, 0, 255, 0.0, 0.07)
     //    const mapMid = p.map(mid, 0, 255, 0.0, 0.1)
 
-    var volume = p.map(p.mouseX, 0, p.width, .07, 1.3);
+    var volume = p.map(p.mouseX, 0, p.width, .037, 1.0);
     audio.amp(volume);
-    var speed = p.map(p.mouseY, 0, p.height, 0.07, 4.3);
+    var speed = p.map(p.mouseY, 0, p.height, 0.037, 4.3);
     audio.rate(speed);
 
 
