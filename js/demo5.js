@@ -3,7 +3,7 @@ const s = (p) => {
  
 
   p.preload = () => { 
-    audio = p.loadSound('audio/BL01_sel01b.wav')
+    audio = p.loadSound('audio/BL01_sel01bAlt01.wav')
     demo5Shader = p.loadShader('shaders/base.vert', 'shaders/d5.frag')
     img = p.loadImage('img/4.jpg')
   }
@@ -47,15 +47,15 @@ const s = (p) => {
     let ranDOM = Math.random(17) *.043;
     
    
-
-    //const mapBass = p.map(bass, 0, 143, 0, 9.0)
     const mapBass = p.map(bass, 0, 150, 0, 9.0) 
-    //const mapTremble = p.map(treble, 0, 199, 0, 0.17)
+    //const mapBass = p.map(bass, 0, 143, 0, 9.0)
+   
     const mapTremble = p.map(treble, 0, 255, 0, 0.17)
-   // const mapMid = p.map(mid, 0, 255, 0.0, 0.06)
+   // const mapTremble = p.map(treble, 30, 235, 0, 0.27)
+  
     const mapMid = p.map(mid, 0, 255, 0.0, 0.07)
+     // const mapMid = p.map(mid, 0, 255, 0.0, 0.06)
 
-    
 
     var volume = p.map(p.mouseX, 0, p.width, .1, 1.0);
     audio.amp(volume);
