@@ -33,6 +33,8 @@ void main() {
   uv = scale(vec2(0.88)) * uv;
   uv += vec2(0.5);
 
+  
+
   float wave = sin(uv.x * u_bass - u_mid + u_time) *  u_tremble;
 
   vec2 d = vec2(wave * 1.9, wave / 1.7);

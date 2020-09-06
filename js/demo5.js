@@ -1,7 +1,8 @@
 const s = (p) => {
-  let demo5Shader, img, fft, audio, toggleBtn 
+  let demo5Shader, img, fft, audio, toggleBtn
+ 
 
-  p.preload = () => {
+  p.preload = () => { 
     audio = p.loadSound('audio/BL01_sel01b.wav')
     demo5Shader = p.loadShader('shaders/base.vert', 'shaders/d5.frag')
     img = p.loadImage('img/4.jpg')
@@ -13,7 +14,9 @@ const s = (p) => {
         document.body.classList.add('start-anim')
           audio.loop()
       })
+      
 
+      
       p.pixelDensity(1)
       p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
 
@@ -39,32 +42,37 @@ const s = (p) => {
 
     const bass = fft.getEnergy("bass") 
     const treble = fft.getEnergy("treble") 
-  
     const mid = fft.getEnergy("mid") 
 
-    const mapBass = p.map(bass, 0, 150, 0, 9.0)
-    //const mapTremble = p.map(treble, 0, 255, 0, 0.5)
-    const mapTremble = p.map(treble, 0, 255, 0, 0.17)
-    const mapMid = p.map(mid, 0, 255, 0.0, 0.07)
-    //    const mapMid = p.map(mid, 0, 255, 0.0, 0.1)
+    let ranDOM = Math.random(17) *.043;
+    
+   
 
-    var volume = p.map(p.mouseX, 0, p.width, .037, 1.0);
+    //const mapBass = p.map(bass, 0, 143, 0, 9.0)
+    const mapBass = p.map(bass, 0, 150, 0, 9.0) 
+    //const mapTremble = p.map(treble, 0, 199, 0, 0.17)
+    const mapTremble = p.map(treble, 0, 255, 0, 0.17)
+   // const mapMid = p.map(mid, 0, 255, 0.0, 0.06)
+    const mapMid = p.map(mid, 0, 255, 0.0, 0.07)
+
+    
+
+    var volume = p.map(p.mouseX, 0, p.width, .1, 1.0);
     audio.amp(volume);
-    var speed = p.map(p.mouseY, 0, p.height, 0.037, 4.3);
-    audio.rate(speed);
+    var speed = p.map(p.mouseY, 0, p.height, 0.01, 3.7);
+    let speedAlt = speed + ranDOM;
+    audio.rate(speedAlt);
 
 
 
     demo5Shader.setUniform('u_time', p.frameCount / 8)
     //demo5Shader.setUniform('u_time', p.frameCount / 8)
 
-    console.log(mapBass);
-    console.log(mapTremble);
-    console.log(mapMid);
+    
    
     demo5Shader.setUniform('u_bass', mapBass)
     demo5Shader.setUniform('u_tremble', mapTremble)
-    demo5Shader.setUniform('u_mid', mapMid)
+    demo5Shader.setUniform('u_mid', mapMid )
 
     p.rect(0,0, p.width, p.height)
   }
