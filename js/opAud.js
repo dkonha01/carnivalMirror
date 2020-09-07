@@ -1,11 +1,11 @@
 const s = (p) => {
-  let demo5Shader, img, fft, audio, toggleBtn
+  let opAudShader, img, fft, audio, toggleBtn
  
 
   p.preload = () => { 
     audio = p.loadSound('audio/BL01_sel01bAlt01.wav')
-    demo5Shader = p.loadShader('shaders/base.vert', 'shaders/d5.frag')
-    img = p.loadImage('img/4.jpg')
+    opAudShader = p.loadShader('shaders/base.vert', 'shaders/opAud.frag')
+    img = p.loadImage('img/opAud.jpg')
   }
 
   p.setup = () => {
@@ -14,9 +14,7 @@ const s = (p) => {
         document.body.classList.add('start-anim')
           audio.loop()
       })
-      
-
-      
+          
       p.pixelDensity(1)
       p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
 
@@ -26,15 +24,12 @@ const s = (p) => {
         this.toggleAudio()
       })
 
-
-      //audio.loop()
-
       fft = new p5.FFT()
-      p.shader(demo5Shader)
+      p.shader(opAudShader)
 
-      demo5Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
-      demo5Shader.setUniform('u_texture', img)
-      demo5Shader.setUniform('u_tResolution', [img.width, img.height])
+      opAudShader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
+      opAudShader.setUniform('u_texture', img)
+      opAudShader.setUniform('u_tResolution', [img.width, img.height])
   }
 
   p.draw = () => {
@@ -46,7 +41,6 @@ const s = (p) => {
 
     let ranDOM = Math.random(17) *.043;
     
-   
     const mapBass = p.map(bass, 0, 150, 0, 9.0) 
     //const mapBass = p.map(bass, 0, 143, 0, 9.0)
    
@@ -56,32 +50,24 @@ const s = (p) => {
     const mapMid = p.map(mid, 0, 255, 0.0, 0.07)
      // const mapMid = p.map(mid, 0, 255, 0.0, 0.06)
 
-
     var volume = p.map(p.mouseX, 0, p.width, .1, 1.0);
     audio.amp(volume);
     var speed = p.map(p.mouseY, 0, p.height, 0.01, 3.7);
     let speedAlt = speed + ranDOM;
     audio.rate(speedAlt);
 
-
-
-    demo5Shader.setUniform('u_time', p.frameCount / 8)
-    //demo5Shader.setUniform('u_time', p.frameCount / 8)
-
-    
-   
-    demo5Shader.setUniform('u_bass', mapBass)
-    demo5Shader.setUniform('u_tremble', mapTremble)
-    demo5Shader.setUniform('u_mid', mapMid )
+    opAudShader.setUniform('u_time', p.frameCount / 8)
+    opAudShader.setUniform('u_bass', mapBass)
+    opAudShader.setUniform('u_tremble', mapTremble)
+    opAudShader.setUniform('u_mid', mapMid )
 
     p.rect(0,0, p.width, p.height)
   }
 
   p.windowResized = () => {
     p.resizeCanvas(p.windowWidth, p.windowHeight)
-    demo5Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
+    opAudShader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
   }
-
   toggleAudio = () => {
     if (audio.isPlaying()) {
       audio.pause()
@@ -89,9 +75,6 @@ const s = (p) => {
       audio.loop()
     }
   }
-
-
-
 };
 
 new p5(s)
