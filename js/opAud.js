@@ -52,7 +52,7 @@ const s = (p) => {
      // const mapMid = p.map(mid, 0, 255, 0.0, 0.06)
 
     var volume = p.map(p.mouseX, 0, p.width, .1, 1.0);
-    audio.amp(volume);
+    audio.amp(volume * 1.4);
     var speed = p.map(p.mouseY, 0, p.height, 0.01, 3.7);
     let speedAlt = speed + ranDOM;
     audio.rate(speedAlt);
