@@ -6,7 +6,7 @@ const s = (p) => {
     audio = p.loadSound('https://res.cloudinary.com/de3c6e2g5/video/upload/v1608512721/201210-001_select_REVERSE_nxybso.wav')
     //audio = p.loadSound('audio/BL01_sel01bAlt01.wav')
     opAudShader = p.loadShader('shaders/base.vert', 'shaders/opAud.frag')
-    img = p.loadImage('https://res.cloudinary.com/de3c6e2g5/image/upload/v1513620825/41_zrr75n.jpg')
+    img = p.loadImage('https://res.cloudinary.com/de3c6e2g5/image/upload/v1608941534/06_L375667_ktb1mu.jpg')
   }
 
   p.setup = () => {
