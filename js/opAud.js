@@ -4,9 +4,9 @@ const s = (p) => {
 
   p.preload = () => { 
    
-    audio = p.loadSound('audio/BL01_sel01bAlt01.wav')
+    audio = p.loadSound('https://res.cloudinary.com/de3c6e2g5/video/upload/v1609035183/hiddenBeach_sel01_dxs8fw.wav')
     opAudShader = p.loadShader('shaders/base.vert', 'shaders/opAud.frag')
-    img = p.loadImage('img/opAud.jpg')
+    img = p.loadImage('https://res.cloudinary.com/de3c6e2g5/image/upload/v1608941534/06_L375667_ktb1mu.jpg')
   }
 
   p.setup = () => {
